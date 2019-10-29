@@ -36,9 +36,6 @@ class TrafficLight:
             __color = "Зеленый"
             print(__color)
             time.sleep(7)
-            __color = "Желтый"
-            print(__color)
-            time.sleep(2)
 
 
 a = TrafficLight()
