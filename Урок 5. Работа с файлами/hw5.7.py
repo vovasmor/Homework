@@ -21,24 +21,30 @@ my_list = []
 my_dict = {}
 profit_dict = {}
 average_profit = 0
+try:
+    with open("hw5_7.txt", "r+") as file:
+        for line in file:
+            # Создаем словарь где ключь это название фирмы, а значения это выручка, издержки
+            key, *value = line.split()
+            # Избавимся от формы собственности
+            my_dict[key] = [item for item in value if int(item.isdigit())]
+            # Поменаем значение выручки и издержки на прибыль
+            my_dict[key] = int(my_dict[key][0]) - int(my_dict[key][1])
+            # Если фирма получила прибыль, а не убытки, то записываем ее в среднюю прибыль
+            if my_dict[key] > 0:
+                average_profit += my_dict[key]
+        # Средняя прибыль = Прибыль всех фирмы / количество фирм
+        profit_dict['average_profit'] = average_profit / len(my_dict)
 
-with open("hw5_7.txt", "r+") as file:
-    for line in file:
-        # Создаем словарь где ключь это название фирмы, а значения это выручка, издержки
-        key, *value = line.split()
-        # Избавимся от формы собственности
-        my_dict[key] = [item for item in value if int(item.isdigit())]
-        # Поменаем значение выручки и издержки на прибыль
-        my_dict[key] = int(my_dict[key][0]) - int(my_dict[key][1])
-        # Если фирма получила прибыль, а не убытки, то записываем ее в среднюю прибыль
-        if my_dict[key] > 0:
-            average_profit += my_dict[key]
-    # Средняя прибыль = Прибыль всех фирмы / количество фирм
-    profit_dict['average_profit'] = average_profit / len(my_dict)
+        my_list.append(my_dict)
+        my_list.append(profit_dict)
+        print(my_list)
+except IOError:
+    print('Error!')
 
-    my_list.append(my_dict)
-    my_list.append(profit_dict)
-    print(my_list)
 # Сохраняем в виде json-объекта
-with open("hw5_7_2.txt", "w") as j_file:
-    json.dump(my_list, j_file)
+try:
+    with open("hw5_7_2.txt", "w") as j_file:
+        json.dump(my_list, j_file)
+except IOError:
+    print('Error!')
