@@ -12,9 +12,11 @@ class Complex:
     def __init__(self, number):
         self.number = number
 
+    # Cумма
     def __add__(self, other):
         return self.number + other.number
 
+    # Умножение
     def __mul__(self, other):
         return self.number * other.number
 

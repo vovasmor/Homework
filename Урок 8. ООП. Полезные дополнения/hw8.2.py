@@ -17,8 +17,10 @@ number_1 = input("Введите делимое: ")
 number_2 = input("Введите делитель: ")
 
 try:
+    # Проверим, что обе переменные числа
     number_2 = int(number_2)
     number_1 = int(number_1)
+    # Проверка, что делитель не ноль
     if number_2 == 0:
         raise OwnError("Делить на ноль нельзя!")
 except ValueError:

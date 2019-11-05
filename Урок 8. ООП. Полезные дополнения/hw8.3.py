@@ -17,10 +17,11 @@ result = []
 next_enter = True
 
 while next_enter:
+    # input всегда возвращает str
     my_list = [el for el in input("Введите элементы списка': ").split()]
-    print(my_list)
     for item in my_list:
         try:
+            # Если элемент не число, то выдает ошибку
             if not item.isnumeric():
                 raise OwnError(f"{item}-{type(item)} Такого типа не должно быть в списке!")
         except OwnError as er:
@@ -37,6 +38,4 @@ while next_enter:
         else:
             print('Неверный ввод, повторите')
 
-print(result)
-
-
+print(f"Конечный список: {result}")

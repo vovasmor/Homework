@@ -24,7 +24,7 @@ class Date:
     @staticmethod
     def valid(date):
         day, month, year = map(int, date.split('-'))
-        return day <= 31 and month <= 12 and year <= 3999
+        return day <= 31 and month <= 12 and year <= 9999
 
 
 print(Date.to_int('12-12-2012'))
